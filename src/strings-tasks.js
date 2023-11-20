@@ -296,8 +296,14 @@ function formatTime(minutes, seconds) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  const arr = Array.from(String(str), String);
+  const arrReversed = arr.reverse();
+  let string = '';
+  for (let i = 0; i < arr.length; i += 1) {
+    string = string.concat(arrReversed[i]);
+  }
+  return string;
 }
 
 /**
@@ -311,8 +317,14 @@ function reverseString(/* str */) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  const arr = Array.from(String(str), String);
+  const arrReversed = arr.reverse().sort();
+  let string = '';
+  for (let i = 0; i < arr.length; i += 1) {
+    string = string.concat(arrReversed[i]);
+  }
+  return string;
 }
 
 /**
@@ -327,8 +339,8 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  return str.includes(substring);
 }
 
 /**
@@ -345,8 +357,20 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  let vowelsStr = '';
+  for (let i = 0; i < vowels.length; i += 1) {
+    vowelsStr = vowelsStr.concat(vowels[i]);
+  }
+  const arr = Array.from(String(str), String);
+  let count = 0;
+  for (let i = 0; i <= arr.length; i += 1) {
+    if (vowelsStr.includes(arr[i])) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 /**
@@ -362,8 +386,24 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const arr = Array.from(String(str), String);
+  const arrReversed = Array.from(String(str), String).reverse();
+  let string = '';
+  let stringReverse = '';
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i].match(/[a-zA-Z]/)) {
+      string = string.concat(arr[i]);
+    }
+    if (arrReversed[i].match(/[a-zA-Z]/)) {
+      stringReverse = stringReverse.concat(arrReversed[i]);
+    }
+  }
+  // console.log(string, stringReverse)
+  if (string.toLowerCase() === stringReverse.toLowerCase()) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -378,8 +418,19 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const words = sentence.split(' ');
+  let size = 0;
+  let sizeNext = 0;
+  let longestWord = '';
+  for (let i = 0; i < words.length; i += 1) {
+    sizeNext = words[i].length;
+    if (sizeNext > size) {
+      longestWord = words[i];
+      size = sizeNext;
+    }
+  }
+  return longestWord;
 }
 
 /**
@@ -392,8 +443,26 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  const words = str.split(' ');
+  let wordReversed = [];
+  const wordsReversed = [];
+  let stringReversed = '';
+  let stringOut = '';
+  for (let i = 0; i < words.length; i += 1) {
+    wordReversed = Array.from(String(words[i]), String).reverse();
+    for (let j = 0; j < wordReversed.length; j += 1) {
+      stringReversed = stringReversed.concat(wordReversed[j]);
+    }
+    // console.log(words[i], stringReversed);
+    wordsReversed.push(stringReversed);
+    wordReversed = [];
+    stringReversed = '';
+  }
+  for (let k = 0; k < wordsReversed.length; k += 1) {
+    stringOut = stringOut.concat(wordsReversed[k], ' ');
+  }
+  return stringOut.trimEnd();
 }
 
 /**
