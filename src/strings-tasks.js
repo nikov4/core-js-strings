@@ -592,7 +592,6 @@ function encodeToRot13(str) {
     string = string.concat(String.fromCharCode(charCode));
     // console.log(arr[i], index, charCode, string);
   }
-  // console.log(string, stringReverse)
   return string;
   */
   const alphabet =
@@ -639,8 +638,72 @@ function encodeToRot13(str) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cardDeck = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  let count = 0;
+  let id = 0;
+  for (let i = 0; i <= cardDeck.length; i += 1) {
+    // console.log(i, value, cardDeck[i]);
+    if (value === cardDeck[i]) {
+      id = count;
+    }
+    count += 1;
+  }
+  return id;
+  // throw new Error('Not implemented');
 }
 
 module.exports = {
