@@ -476,8 +476,22 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  const words = Array.from(String(str), String);
+  let stringInverted = '';
+  let wordUpper = '';
+  let wordlower = '';
+  for (let i = 0; i < words.length; i += 1) {
+    wordUpper = words[i].toUpperCase();
+    wordlower = words[i].toLowerCase();
+    if (words[i] === wordUpper) {
+      stringInverted = stringInverted.concat(wordlower);
+    } else if (words[i] === wordlower) {
+      stringInverted = stringInverted.concat(wordUpper);
+    }
+    // console.log(words[i], wordUpper, wordlower);
+  }
+  return stringInverted;
 }
 
 /**
@@ -493,8 +507,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -507,8 +521,10 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const postStart = value.indexOf(' ');
+  const posEnd = value.indexOf('!');
+  return value.substring(postStart + 1, posEnd);
 }
 
 /**
@@ -522,8 +538,10 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  const postStart = str.indexOf('<');
+  const posEnd = str.indexOf('>');
+  return str.substring(postStart + 1, posEnd);
 }
 
 /**
@@ -541,8 +559,9 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  const emails = str.split(';');
+  return emails;
 }
 
 /**
@@ -561,8 +580,39 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  /*
+  const arr = Array.from(String(str), String);
+  let charCode = 0;
+  let string = '';
+  let index = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    index = str.indexOf(arr[i]);
+    charCode = str.charCodeAt(index) + 13;
+    string = string.concat(String.fromCharCode(charCode));
+    // console.log(arr[i], index, charCode, string);
+  }
+  // console.log(string, stringReverse)
+  return string;
+  */
+  const alphabet =
+    'abcdefghijklmnopqrstuvwxyzabcdefghijklmABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM';
+  const arr = Array.from(String(str), String);
+  let charCode = 0;
+  let string = '';
+  let index = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i].match(/[a-zA-Z]/)) {
+      index = alphabet.indexOf(arr[i]);
+      charCode = alphabet.charAt(index + 13);
+      string = string.concat(charCode);
+    } else if (arr[i] === ' ') {
+      string = string.concat(' ');
+    } else {
+      string = string.concat(arr[i]);
+    }
+  }
+  return string;
 }
 
 /**
