@@ -41,14 +41,15 @@ function getStringLength(value) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  /*
-  if (typeof value === 'string' && value.length > 0) {
+function isString(value) {
+  let str = value;
+  if (typeof value === 'object' && value !== null) {
+    str = value.valueOf();
+  }
+  if (typeof str === 'string') {
     return true;
   }
   return false;
-  */
-  throw new Error('Not implemented');
 }
 
 /**
@@ -237,8 +238,14 @@ function sumOfCodes(str) {
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function startsWith(str, substr) {
+  /* const string = str.substring(0, substr.length);
+  if (string === substr) {
+    return true;
+  }
+  return false;
+  */
+  return str.startsWith(substr);
 }
 
 /**
@@ -252,8 +259,8 @@ function startsWith(/* str, substr */) {
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function endsWith(str, substr) {
+  return str.endsWith(substr);
 }
 
 /**
@@ -269,8 +276,14 @@ function endsWith(/* str, substr */) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  let min = String(minutes);
+  let sec = String(seconds);
+  let time = '';
+  min = min.padStart(2, '0');
+  sec = sec.padStart(2, '0');
+  time = time.concat(min, ':', sec);
+  return time;
 }
 
 /**
